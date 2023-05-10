@@ -1,17 +1,28 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { ref, onMounted } from 'vue'
+import axios from 'axios';
+
+const lists = ref<any>();
+const getData = async () => {
+  const api = `${import.meta.env.VITE_WEB_API}/api/banners`;
+
+  await axios.get(api)
+    .then((res: { data: any[]; }) => {
+      lists.value = res.data.values;
+      console.log(res.data);
+    });
+
+}
+
+onMounted(() => {
+  getData();
+});
 </script>
 
 <template>
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+    <router-view></router-view>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>

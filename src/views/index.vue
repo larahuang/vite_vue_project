@@ -5,11 +5,13 @@
         <child @childClick="childValFn" :name="name" :list="lists"/>  
         <!--子對父傳值時-->
         <div>{{ childData }}</div>
+
+        <button @click="count += 1">點擊+</button>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, provide } from 'vue'
 import Child from '../components/Child.vue'
 //父對子傳值
 const name = ref('小叮噹')
@@ -24,4 +26,7 @@ const childValFn = (e: any) => {
     //接收子组件傳遞给父组件的值
     childData.value = e.value
 }
+
+const count = ref(0)
+provide('count', count)
 </script>

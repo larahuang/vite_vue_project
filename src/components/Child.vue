@@ -1,17 +1,22 @@
 <template>
    <div>
+        <!--父對子傳值時-->
         <span>{{ props.name }}</span>
         <ul>
             <li v-for="(item, id) in list" :key="id">
                 {{ item.name }}
             </li>
         </ul>
+
+
    </div>
+
 </template>
 
 <script setup lang="ts">
+// 父對子傳值時引入defineProps
 import { defineProps } from 'vue'
-// 宣告props
+// 父對子傳值時子宣告props
 const props = defineProps({
     name: {
         type: String,
@@ -21,6 +26,6 @@ const props = defineProps({
         type: Array,
         default: '11'
     }
-
 })
+
 </script>

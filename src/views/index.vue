@@ -2,9 +2,9 @@
     <div>
         <!--父對子傳值時-->
         <div>父對子</div>
-        <child :name="name" :list="lists"/>  
-
-
+        <child @childClick="childValFn" :name="name" :list="lists"/>  
+        <!--子對父傳值時-->
+        <div>{{ childData }}</div>
     </div>
 </template>
 
@@ -19,5 +19,9 @@ const lists = ref([
     {id:112,name:'自由業'}
 ])
 
-
+const childData = ref(null)
+const childValFn = (e: any) => {
+    //接收子组件傳遞给父组件的值
+    childData.value = e.value
+}
 </script>
